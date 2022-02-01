@@ -1,9 +1,10 @@
 let scrapButton = document.getElementById('scrapButton')
 
-console.log('hola en el contexte de la extension')
 
 scrapButton.addEventListener('click', async () =>{
     const [tab] = await chrome.tabs.query({active: true, currentWindow:true})
+    console.log("🚀 ~ file: index.js ~ line 6 ~ scrapButton.addEventListener ~ tab", tab)
+    
     if(tab !== null){
         chrome.scripting.executeScript({
             target: {tabId: tab.id},
@@ -14,6 +15,14 @@ scrapButton.addEventListener('click', async () =>{
 
 
 const profilesScrapers = () => {
-console.log('hola en pagina a  inyectar')
+
+    const contactInfoQueries = {
+        nombre: document.querySelector('div.ph5.pb5 > div.mt2.relative > div:nth-child(1) > div:nth-child(1) > h1')
+    }
+
+    const githubProfile =  {
+        nombre: contactInfoQueries.nombre?.innerText
+    }
+    console.log(githubProfile)
 
 }
